@@ -46,7 +46,9 @@ each shot, and let H3 render the shots along the Blender camera. Walkthrough, re
 camera and the position from Blender and dances freely. Both are lip-synced:
 [how they differ and how to make them](cutscene/README.md#singing-lip-sync).
 
-![Motion version above, camera + position version below](docs/images/song_versions.gif)
+[![Motion version above, camera + position version below](docs/images/song_versions.gif)](https://github.com/kei1975/comfyui-H3-PIKA-lipsync-blender-chain/blob/main/docs/videos/song_compare_4.mp4)
+
+**[Watch the whole song with sound (4 screens, 90 s)](https://github.com/kei1975/comfyui-H3-PIKA-lipsync-blender-chain/blob/main/docs/videos/song_compare_4.mp4)**
 
 For cutscenes only, you don't need to install the node pack or the Director.
 
@@ -217,4 +219,5 @@ renders the shots in H3.
 
 ## Licence
 
-MIT (see `LICENSE`). The models and the other custom nodes have their own licences.
+MIT (see `LICENSE`) for the code and the workflows. The song, the character and the sample images and videos in `docs/`
+are © kei1975 and are not covered by the MIT licence. The models and the other custom nodes have their own licences.

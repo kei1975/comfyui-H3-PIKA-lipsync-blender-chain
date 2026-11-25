@@ -40,7 +40,9 @@ H3 が Blender のカメラに沿ってレンダーします。手順・必要�
 **歌もののカットシーン:** 同じ曲を 2 つの版で作りました。マネキンの動きに従う版と、Blender からはカメラと位置だけを受け取って自由に踊る版です。
 どちらもリップシンクします（[違いと作り方](cutscene/README_ja.md#歌ものリップシンク)）。
 
-![上が動き参照、下がカメラ＋位置参照](docs/images/song_versions.gif)
+[![上が動き参照、下がカメラ＋位置参照](docs/images/song_versions.gif)](https://github.com/kei1975/comfyui-H3-PIKA-lipsync-blender-chain/blob/main/docs/videos/song_compare_4.mp4)
+
+**[全曲を音付きで見る（4 画面、90 秒）](https://github.com/kei1975/comfyui-H3-PIKA-lipsync-blender-chain/blob/main/docs/videos/song_compare_4.mp4)**
 
 カットシーンだけ使うなら、ノードパックと Director のインストールは不要です。
 
@@ -197,4 +199,4 @@ song.json を書いて曲全体を生成し、結果を報告します。
 
 ## ライセンス
 
-MIT（`LICENSE`）。モデルやほかのカスタムノードにはそれぞれのライセンスがあります。
+コードとワークフローは MIT（`LICENSE`）。`docs/` の曲・キャラクター・作例の画像と動画は © kei1975 で、MIT の対象外です。モデルやほかのカスタムノードにはそれぞれのライセンスがあります。

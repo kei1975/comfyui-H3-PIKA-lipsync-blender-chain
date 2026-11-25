@@ -125,6 +125,10 @@ Top: the `position` reference. Bottom: H3 dances freely in the same place with t
 The same song (90 s, 18 shots) was made twice, with the same camera moves. The set and the styling differ too, but the main
 change is what H3 takes from Blender. The vocals go to H3 as `<Audio 1>` in both, so the lips follow the song either way.
 
+**The whole song with sound (4 screens, 90 s). Click to play:**
+
+[![Blender and H3: motion version above, camera + position version below](../docs/images/song_compare_4_thumb.jpg)](https://github.com/kei1975/comfyui-H3-PIKA-lipsync-blender-chain/blob/main/docs/videos/song_compare_4.mp4)
+
 ![Blender and H3: motion version above, camera + position version below](../docs/images/song_versions.gif)
 
 Left: Blender. Right: H3. Upper row: the motion version. Lower row: the camera + position version. (GIF, no sound.)

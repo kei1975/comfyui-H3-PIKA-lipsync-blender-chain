@@ -122,6 +122,10 @@ python tools/h3_shot.py my_scene S01 position
 同じ曲（90 秒、18 ショット）を、同じカメラワークで 2 回作りました。セットや雰囲気も違いますが、一番の違いは H3 が Blender から受け取るものです。
 どちらもボーカルを `<Audio 1>` として H3 に渡すので、口は歌に合います。
 
+**全曲・音付き（4 画面、90 秒）。クリックで再生:**
+
+[![Blender と H3。上が動き参照、下がカメラ＋位置参照](../docs/images/song_compare_4_thumb.jpg)](https://github.com/kei1975/comfyui-H3-PIKA-lipsync-blender-chain/blob/main/docs/videos/song_compare_4.mp4)
+
 ![Blender と H3。上が動き参照、下がカメラ＋位置参照](../docs/images/song_versions.gif)
 
 左が Blender、右が H3。上の段が動き参照版、下の段がカメラ＋位置参照版です（GIF のため音はありません）。
