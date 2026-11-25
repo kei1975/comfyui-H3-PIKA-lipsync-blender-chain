@@ -1,0 +1,41 @@
+{
+ "name": "singer",
+ "version": "v1",
+ "title": "My Song",
+ "audio": "my_song/song.mp3",
+ "character": {
+  "name": "Singer",
+  "image": "my_song/character_sheet.png",
+  "description": "Singer, a young woman who sings lead: long straight silver hair, a red bomber jacket, black jeans. Describe what the character sheet shows."
+ },
+ "face": {
+  "image": "my_song/face.png",
+  "description": "Close-up of Singer's face: long straight silver hair, grey eyes, red lipstick."
+ },
+ "location": {
+  "name": "Street",
+  "image": "my_song/background.png",
+  "description": "A night street with neon signs in pink and cyan, wet pavement reflecting the lights."
+ },
+ "look": "Photorealistic city-pop music-video look: rich pink, magenta and cyan neon, warm golden shop light, soft bloom around the lights, 35mm film grain, realistic skin and fabric texture.",
+ "idea": "Singer performs her song on a neon street at night in a vertical music video, the camera moving around her from changing angles.",
+ "common": " From the very first frame she is already standing close to the lens. The camera never goes behind her; her face always stays in view. @Singer sings the song with a light groove on the spot; her lips follow the vocals and stay closed when there are no vocals. The place is always the @Street.",
+ "intro": "The camera frames @Singer's face and shoulders on the @Street, 85mm lens, from the very first frame. She waits for the song with her lips closed, swaying gently. 0–5s: She looks up into the lens with a small smile. 5–10s: She breathes in, about to sing.",
+ "intro_cut": 7.5,
+ "shots": [
+  ["The camera frames @Singer from her head to her waist, slightly from her left, 35mm lens at chest height. The camera slowly orbits from her front-left to her front.",
+   "She sings to the lens with small shoulder bounces.",
+   "She keeps singing to the lens, one hand loose at her side."],
+  ["The camera frames a close-up of @Singer's face and shoulders, 85mm lens, with the pink neon at the left edge. The camera pushes in very slowly.",
+   "She sings softly to the lens, eyes half closed.",
+   "She opens her eyes and keeps singing to the lens with a small smile."],
+  ["The camera frames @Singer from her head to her waist from a low angle, 24mm lens, the neon signs above her. The camera rises smoothly to her eye level.",
+   "She sings down to the lens with a finger snap on the beat.",
+   "She keeps singing straight into the lens, a hand on her hip."]
+ ],
+ "scene_seconds": 10,
+ "width": 512,
+ "height": 896,
+ "crossfade": 0.5,
+ "seed": 20261117
+}

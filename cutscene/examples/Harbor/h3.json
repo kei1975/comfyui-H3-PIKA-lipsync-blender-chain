@@ -1,0 +1,39 @@
+{
+ "sheet": "input/char_sheet.png",
+ "seed": 4201,
+ "size": [
+  1056,
+  576
+ ],
+ "ref_size_full": [
+  1056,
+  576
+ ],
+ "ref_size": [
+  704,
+  384
+ ],
+ "subject": "the woman in <Picture 1> (Mimi), a cool bassist with a short black bob with blunt bangs, small dark oval sunglasses, gold hoop earrings, a loose orange-black-cream patterned open shirt over a black crop top, wide mustard-yellow cargo pants and cream platform sneakers",
+ "retain": "her face, short black bob, dark oval sunglasses, patterned shirt and mustard cargo pants are retained",
+ "look": "Photorealistic cinematic live-action footage, one continuous uncut shot on a concrete harbor pier in a violent storm. From the first frame to the last frame the heavy rain never stops and never weakens: dense white streaks of rain blow diagonally from left to right across the whole picture, in front of her and behind her, and splash on the concrete. The gale never drops: her hair whips across her face and her open shirt flaps and billows sideways the whole time. Her hair, skin, shirt and trousers are soaked and dripping, with water running down her face and sunglasses. Low dark clouds, huge grey-green waves with white foam and spray, wet reflective concrete, iron street lamps glowing warm in the rain. There are no cuts, no subtitles and no on-screen text.",
+ "video_role": "<Video 1> is a rough 3D blockout. Only its camera path, framing, timing and body motion are followed. Its mannequin, flat materials, plain empty sky, still air and lighting are not copied; the rain and wind are missing from <Video 1> and must be added.",
+ "sound": "Howling wind, heavy rain on concrete, waves crashing against the pier, shoes on wet concrete. She does not speak.",
+ "shots": {
+  "S03": {
+   "summary": "Mimi walks toward the camera, slows to a stop, then turns her head and looks up past the camera, as the camera pushes in to a close-up.",
+   "detailed": "The camera starts directly from the exact composition of the opening frame and pushes in smoothly and continuously, following <Video 1>, from a thigh-up shot to a close-up of her head and shoulders. <Subject 1> walks a few steps toward the camera, slows down and stops. Her mouth stays closed. After she has stopped, she turns her head to screen right and raises her chin, looking up at something beyond the frame, and holds that look until the end. The sunglasses stay on. During the close-up at the end, heavy rain is still streaking across the picture and her soaked hair and collar are still whipping in the wind."
+  },
+  "S01": {
+   "summary": "Mimi walks away from the camera down the pier toward the lighthouse while the camera slowly rises and moves forward.",
+   "detailed": "The camera starts directly from the exact composition of the opening frame and slowly rises and drifts forward, following <Video 1>. <Subject 1> is seen from behind the whole time and keeps walking steadily away from the camera along the pier toward the lighthouse, getting smaller. The lighthouse lamp and the street lamps stay lit. The small white and blue fishing boat pitches on the waves at the far right."
+  },
+  "S02": {
+   "summary": "Side tracking shot: Mimi walks to the right in profile and the camera moves alongside her.",
+   "detailed": "The camera starts directly from the exact composition of the opening frame and tracks sideways at her walking speed, following <Video 1>, so she stays near the middle of the picture. <Subject 1> walks steadily to the right in strict side profile with natural arm swing, two arms and two legs. The lamp posts pass by behind her and huge waves roll behind the pier. Her mouth stays closed and the sunglasses stay on."
+  },
+  "S04": {
+   "summary": "Seen from behind, Mimi raises her right arm and waves to the approaching boat, then lowers it, while the camera rises and pulls back.",
+   "detailed": "The camera starts directly from the exact composition of the opening frame and smoothly rises and pulls back, following <Video 1>. <Subject 1> stands still with her back to the camera the whole time. She raises her right arm high, waves it from side to side several times toward the small white and blue fishing boat, then lowers the arm to her side. The boat pitches and rolls as it comes closer on the right. She has exactly two arms."
+  }
+ }
+}
