@@ -122,17 +122,83 @@ Top: the `position` reference. Bottom: H3 dances freely in the same place with t
 
 ## Singing (lip sync)
 
-`examples/OutdoorStage` is a whole song in 18 shots, `position` mode: `make_json.py` writes `cutscene.json` (cuts on the
-bar lines), `paint_all.py` paints the first frames, `make_h3.py` writes `h3.json`. The song and the character images are
-not included, and the times in the scripts belong to that song, so use it as a template.
+The same song (90 s, 18 shots) was made twice, with the same camera moves. The set and the styling differ too, but the main
+change is what H3 takes from Blender. The vocals go to H3 as `<Audio 1>` in both, so the lips follow the song either way.
 
-- `song.file` in `cutscene.json` and `song.h3_audio` in `h3.json` (the song with the vocals forward; separate them with
-  any stem separator). Every shot has `start` (seconds in the song) and `use` (frames kept in the film).
-- Put into `input/`: `song.mp3`, `vocal_forward.wav`, `char_sheet.png`, `face.png`, and the crops `upper.png`,
-  `thigh.png`, `fullbody.png`.
-- `h3_shot.py` gives each shot its part of the song; `join.py` trims the shots and lays the original song underneath.
+![Blender and H3: motion version above, camera + position version below](../docs/images/song_versions.gif)
+
+Left: Blender. Right: H3. Upper row: the motion version. Lower row: the camera + position version. (GIF, no sound.)
+
+| | Motion (`gray`) | Camera + position (`position`) |
+|---|---|---|
+| `<Video 1>` | the mannequin, gray | a pillar that shows only the place and the facing |
+| Body | follows the mannequin's poses and sway; stiff | dances freely, as described in the text |
+| Camera, framing | from Blender | from Blender |
+| Lips | from `<Audio 1>` | from `<Audio 1>` |
+| Where the dance is written | poses and `groove` in `cutscene.json` | `detailed_open`, one text per shot |
+| Use for | fixed choreography, acting, a standing singer | dance and singing (recommended) |
+| This film | indoor TV stage; 2 of 18 shots redone | outdoor stage in strong wind; 4 of 18 shots redone for more wind |
+
+The mouth in the same shot (S03), every 15 frames. Top: motion. Bottom: camera + position.
+
+![The mouth every 15 frames in both versions](../docs/images/song_lipsync.jpg)
+
+The whole camera + position film, two frames per shot:
 
 ![OutdoorStage](../docs/images/cutscene_song_sheet.jpg)
+
+### Make the camera + position version
+
+`examples/OutdoorStage` is this version: `make_json.py` writes `cutscene.json` (cuts on the bar lines), `paint_all.py`
+paints the first frames, `make_h3.py` writes `h3.json`. The song and the character images are not included, and the times,
+the wind and the lyric cues belong to that song, so use it as a template.
+
+1. Copy `examples/OutdoorStage` to `examples/my_song` and put into its `input/`: `song.mp3`, `vocal_forward.wav` (the song
+   with the vocals forward; use any stem separator), `char_sheet.png`, `face.png`, and the crops `upper.png`, `thigh.png`,
+   `fullbody.png`.
+2. In `cutscene.json` (written by `make_json.py`), `song.file` is the song, and every shot has `start` (seconds in the
+   song) and `use` (frames kept in the film). Cut a little before a bar line (0.12 s here).
+3. In `h3.json` (written by `make_h3.py`), set `song`, and for each shot `"ref": "position"` and `detailed_open`:
+
+```json
+"song": {"h3_audio": "input/vocal_forward.wav",
+         "text": "a section of a Japanese pop song with a female lead vocal, sung by <Subject 1>; the vocals are in front and the band is quiet behind"},
+"shots": {"S05": {"ref": "position",
+  "summary": "She sings and dances, seen from the right.",
+  "detailed": "",
+  "detailed_open": "The camera starts directly from the exact composition of the opening frame and drifts left around her, following <Video 1>. <Subject 1> sings the vocals of <Audio 1> from beginning to end: her lips, jaw and teeth move clearly on every syllable, open wide on long notes and close only at breaths. Her face stays toward the camera, and her hands and hair never cover her mouth. While singing she dances freely with her whole upper body: big arm gestures, shoulder accents, hips swaying to the beat. She has exactly two arms."}}
+```
+
+4. Run (here for three shots; list all of them in the end):
+
+```
+python examples/my_song/make_json.py
+python tools/render_review.py examples/my_song
+python examples/my_song/paint_all.py
+python examples/my_song/make_h3.py
+blender -b --factory-startup examples/my_song/cutscene.blend --python-exit-code 1 -P tools/ref_pass.py -- examples/my_song position S01 S02 S03
+python tools/h3_shot.py examples/my_song S03 auto
+python tools/join.py examples/my_song S01=position S02=position S03=position
+```
+
+`h3_shot.py` gives each shot its part of the song. `join.py` trims the shots to `use` and lays the original song underneath.
+
+For the motion version, leave out `"ref"`, put the text into `detailed`, and describe the same action as the mannequin
+("She sways gently on the spot to the beat, following <Video 1>"). Say in `video_role` that the blockout has no mouth and
+that the face follows `<Audio 1>`. `ref_pass.py` is not needed.
+
+### What we learned
+
+- Write a different dance for every shot. The same sentence gives the same pose at the same second.
+- Close-ups: keep the dance in the shoulders and the head, hands below the chin, so the mouth stays readable.
+- Shots without vocals: "There are no vocals: she does not sing, her lips stay closed the whole time." Mixed shots: say
+  which seconds.
+- A microphone must never cover the mouth. The camera + position film has none.
+- Test the lip sync on a close-up first, then check the faces of all shots.
+- Wide shots: the painter tends to make the person too large. Try other seeds and "tiny and far away, one third of the
+  picture height".
+- Wind: prompts alone fade out during the shot. Windblown first frames and a windblown character sheet helped most. The
+  four redone shots, with a stronger wind text, gained only a little.
 
 ## cutscene.json
 

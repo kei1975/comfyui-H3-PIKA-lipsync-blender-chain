@@ -119,14 +119,76 @@ python tools/h3_shot.py my_scene S01 position
 
 ## 歌もの（リップシンク）
 
-`examples/OutdoorStage` は 1 曲まるごと 18 ショット、`position` モードの例です。`make_json.py` が `cutscene.json`（小節線でカット）、
-`paint_all.py` が開始フレーム、`make_h3.py` が `h3.json` を作ります。曲とキャラクターの画像は同梱していません。時刻もその曲のものなので、ひな形として使ってください。
+同じ曲（90 秒、18 ショット）を、同じカメラワークで 2 回作りました。セットや雰囲気も違いますが、一番の違いは H3 が Blender から受け取るものです。
+どちらもボーカルを `<Audio 1>` として H3 に渡すので、口は歌に合います。
 
-- `cutscene.json` の `song.file` と、`h3.json` の `song.h3_audio`（ボーカルを前に出した曲。分離ソフトで作ります）。各ショットに `start`（曲の秒）と `use`（残すフレーム数）。
-- `input/` に置くもの: `song.mp3`、`vocal_forward.wav`、`char_sheet.png`、`face.png`、切り抜きの `upper.png`、`thigh.png`、`fullbody.png`。
-- `h3_shot.py` がショットごとに曲を切り出して渡し、`join.py` が長さをそろえて元の曲を付けます。
+![Blender と H3。上が動き参照、下がカメラ＋位置参照](../docs/images/song_versions.gif)
+
+左が Blender、右が H3。上の段が動き参照版、下の段がカメラ＋位置参照版です（GIF のため音はありません）。
+
+| | 動き参照（`gray`） | カメラ＋位置だけ参照（`position`） |
+|---|---|---|
+| `<Video 1>` | 灰色のマネキン | 位置と向きだけを示す柱 |
+| 体 | マネキンのポーズと揺れに従う。硬い | 文章の指示で自由に踊る |
+| カメラ・構図 | Blender のまま | Blender のまま |
+| 口 | `<Audio 1>` に合う | `<Audio 1>` に合う |
+| 振り付けを書く場所 | `cutscene.json` のポーズと `groove` | `detailed_open` にショットごとの文章 |
+| 向き | 決まった振り付け、演技、立って歌う歌手 | ダンスと歌（おすすめ） |
+| この作品 | 屋内の歌番組セット。18 ショット中 2 つを撮り直し | 強風の野外ステージ。18 ショット中 4 つを、風を強めるため撮り直し |
+
+同じショット（S03）の口元を 15 フレームおきに並べたもの。上が動き参照、下がカメラ＋位置参照です。
+
+![2 つの版の口元](../docs/images/song_lipsync.jpg)
+
+カメラ＋位置参照版の全ショット（各 2 コマ）:
 
 ![OutdoorStage](../docs/images/cutscene_song_sheet.jpg)
+
+### カメラ＋位置参照版の作り方
+
+`examples/OutdoorStage` がこの版です。`make_json.py` が `cutscene.json`（小節線でカット）、`paint_all.py` が開始フレーム、`make_h3.py` が `h3.json` を作ります。
+曲とキャラクターの画像は同梱していません。時刻・風・歌の指示もその曲のものなので、ひな形として使ってください。
+
+1. `examples/OutdoorStage` を `examples/my_song` にコピーし、`input/` に `song.mp3`、`vocal_forward.wav`（ボーカルを前に出した曲。分離ソフトで作ります）、
+   `char_sheet.png`、`face.png`、切り抜きの `upper.png`、`thigh.png`、`fullbody.png` を置きます。
+2. `cutscene.json`（`make_json.py` が書く）は、`song.file` が曲、各ショットの `start` が曲の秒、`use` が残すフレーム数です。カットは小節線の少し前（ここでは 0.12 秒前）に置きます。
+3. `h3.json`（`make_h3.py` が書く）に `song` と、ショットごとの `"ref": "position"` と `detailed_open` を書きます。
+
+```json
+"song": {"h3_audio": "input/vocal_forward.wav",
+         "text": "a section of a Japanese pop song with a female lead vocal, sung by <Subject 1>; the vocals are in front and the band is quiet behind"},
+"shots": {"S05": {"ref": "position",
+  "summary": "She sings and dances, seen from the right.",
+  "detailed": "",
+  "detailed_open": "The camera starts directly from the exact composition of the opening frame and drifts left around her, following <Video 1>. <Subject 1> sings the vocals of <Audio 1> from beginning to end: her lips, jaw and teeth move clearly on every syllable, open wide on long notes and close only at breaths. Her face stays toward the camera, and her hands and hair never cover her mouth. While singing she dances freely with her whole upper body: big arm gestures, shoulder accents, hips swaying to the beat. She has exactly two arms."}}
+```
+
+4. 実行します（例は 3 ショット分。最後は全ショットを並べます）。
+
+```
+python examples/my_song/make_json.py
+python tools/render_review.py examples/my_song
+python examples/my_song/paint_all.py
+python examples/my_song/make_h3.py
+blender -b --factory-startup examples/my_song/cutscene.blend --python-exit-code 1 -P tools/ref_pass.py -- examples/my_song position S01 S02 S03
+python tools/h3_shot.py examples/my_song S03 auto
+python tools/join.py examples/my_song S01=position S02=position S03=position
+```
+
+`h3_shot.py` がショットごとに曲を切り出して渡し、`join.py` が `use` の長さにそろえて元の曲を付けます。
+
+動き参照版にする場合は、`"ref"` を書かずに文章を `detailed` に入れ、マネキンと同じ動作を書きます（「She sways gently on the spot to the beat, following <Video 1>」など）。
+`video_role` には、ブロックアウトに口がないことと、顔は `<Audio 1>` に従うことを書きます。`ref_pass.py` は不要です。
+
+### 分かったこと
+
+- ダンスの文はショットごとに変えます。同じ文だと、同じ秒に同じポーズになります。
+- 寄りのショットは肩と頭だけで踊らせ、手はあごより下に。口が見えるようにします。
+- 歌のないショットには「There are no vocals: she does not sing, her lips stay closed the whole time.」。途中だけ歌うショットは秒を書きます。
+- マイクで口を隠さないようにします。カメラ＋位置参照版にはマイクがありません。
+- リップシンクは寄りのショットで先に試し、その後に全ショットの顔を確認します。
+- 引きのショットは、開始フレームで人物が大きくなりがちです。シードを変えるか「tiny and far away, one third of the picture height」と書きます。
+- 風は、文章だけではショットの途中で弱まります。風に吹かれた開始フレームとキャラシートが一番効きました。撮り直した 4 ショットは風の文を強めましたが、少ししか増えませんでした。
 
 ## cutscene.json
 

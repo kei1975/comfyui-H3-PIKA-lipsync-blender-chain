@@ -42,6 +42,12 @@ each shot, and let H3 render the shots along the Blender camera. Walkthrough, re
 
 ![The four stages of a cutscene shot](docs/images/cutscene_pipeline.jpg)
 
+**Singing cutscenes:** the same song in two versions, one that follows the mannequin's motion, and one that takes only the
+camera and the position from Blender and dances freely. Both are lip-synced:
+[how they differ and how to make them](cutscene/README.md#singing-lip-sync).
+
+![Motion version above, camera + position version below](docs/images/song_versions.gif)
+
 For cutscenes only, you don't need to install the node pack or the Director.
 
 ## Contents
